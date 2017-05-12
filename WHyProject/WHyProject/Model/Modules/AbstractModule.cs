@@ -13,10 +13,14 @@ namespace WHyProject.Model.Modules
    /// </summary>
     public abstract class AbstractModule 
     {
+
         /// <summary>
         /// Initializes a new instance of the AbstractModule class.
         /// </summary>
         public ushort ModeForDisplay { get; set; }
+
+        public ushort StatusForDisplay { get; set; }
+
 
         public ushort[] FaultForDisplay { get; set; }
 

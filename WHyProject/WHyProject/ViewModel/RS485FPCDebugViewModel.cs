@@ -3,20 +3,30 @@ using WHyProject.Model.Conductor;
 using System.Collections.ObjectModel;
 using System;
 using System.Windows.Threading;
+using GalaSoft.MvvmLight.Messaging;
 
 namespace WHyProject.ViewModel
 {
-     ///<summary>
+   
+    ///<summary>
     /// This class is created to show data in listbox
     /// </summary>
     public class RS485DebugFPCData : ViewModelBase
     {
+        private MasterConductor objMasterConductor = MasterConductor.Master;
 
         private double _data;
         private string _img;
         private bool _light;
         public string Info { get; set; }
        
+        public RS485DebugFPCData()
+        {
+  
+        }
+
+
+
         public bool Light
         {
             get { return _light; }
@@ -44,18 +54,16 @@ namespace WHyProject.ViewModel
         {
             get
             {
-                if (Light == true)
-                    return "D:/huyue/C/C#_pipi/WHyProject/WHyProject/Res/red.jpg";
-                else
-                    return "D:/huyue/C/C#_pipi/WHyProject/WHyProject/Res/green.jpg";
+
+                return _img;
 
             }
             set
             {
                 if (Light == true)
-                    _img = "D:/huyue/C/C#_pipi/WHyProject/WHyProject/Res/red.jpg";
+                    _img = "D:/huyue/C/C#_pipi/Why/WHyProject/WHyProject/Res/red.jpg";
                 else
-                    _img =  "D:/huyue/C/C#_pipi/WHyProject/WHyProject/Res/green.jpg";
+                    _img = "D:/huyue/C/C#_pipi/Why/WHyProject/WHyProject/Res/green.jpg";
                 RaisePropertyChanged(() => Img);
 
             }
@@ -72,7 +80,7 @@ namespace WHyProject.ViewModel
     /// </summary>
     public class RS485FPCDebugViewModel : ViewModelBase
     {
-        private MasterConductor objMasterConductor = new MasterConductor();
+        private MasterConductor objMasterConductor = MasterConductor.Master;
         private ObservableCollection<RS485DebugFPCData> rs485ListData1;
         private ObservableCollection<RS485DebugFPCData> rs485ListData2;
         private ObservableCollection<RS485DebugFPCData> rs485ListData3;
@@ -82,6 +90,46 @@ namespace WHyProject.ViewModel
         private ObservableCollection<RS485DebugFPCData> rs485Light4;
         private ObservableCollection<RS485DebugFPCData> rs485Light5;
         private ObservableCollection<RS485DebugFPCData> rs485Light6;
+
+        string[] TextBlockInfo1 = { "控制柜温度", "TBD", "TBD", "开关柜温度",
+                                        "冷却水温度","冷却水压力","TBD","TBD",
+                                       };
+
+        string[] TextBlockInfo2 = { "电网电压RS","电网电压ST","电网电压TR","电网频率",
+                                  "电网电流R","电网电流S","电网电流T","电网有功",
+                                        "电感电流R","电感电流S","电感电流T","电网无功",
+                                        "母线电压","模块温度R","模块温度S","模块温度T",
+                                        "制动恢复时间"};
+
+        string[] TextBlockInfo3 = { "定子电压UV","定子电压VW","定子电压WU","电机频率",
+                                        "定子电流U","定子电流V","定子电流W","电机有功",
+                                        "励磁电流","故障编号","机侧功率因数","电磁转矩",
+                                        "母线电压","模块温度U","模块温度V","模块温度W"
+                                     };
+
+
+        string[] TextBlockUnit1 =
+        {
+                "C"," "," ","C",
+                "C","bar"," "," "
+        };
+        string[] TextBlockUnit2 =
+        {
+             "V","V","V","Hz",
+                "A","A","A","KW",
+                "A","A","A","KVar",
+                "V","C","C","C",
+                "min"
+        };
+
+        string[] TextBlockUnit3 =
+        {
+            "V","V","V","Hz",
+                "A","A","A","KW",
+                "A"," "," ","%",
+                "V","C","C","C"
+        }; 
+
 
 
         string[] LightInfo1 = { "初始化", "待机", "启动", "并网", "关机", "急停" };
@@ -93,7 +141,7 @@ namespace WHyProject.ViewModel
         public override void Cleanup()
         {
             base.Cleanup();
-            timer.Stop();
+            //timer.Stop();
         }
 
         public ObservableCollection<RS485DebugFPCData> RS485ListData1
@@ -104,6 +152,8 @@ namespace WHyProject.ViewModel
             }
             set
             {
+                if (rs485ListData1 == value)
+                    return;
                 rs485ListData1 = value;
             }
         }
@@ -116,6 +166,8 @@ namespace WHyProject.ViewModel
             }
             set
             {
+                if (rs485ListData2 == value)
+                    return;
                 rs485ListData2 = value;
             }
         }
@@ -128,6 +180,8 @@ namespace WHyProject.ViewModel
             }
             set
             {
+                if (rs485Light1 == value)
+                    return;
                 rs485Light1 = value;
             }
         }
@@ -140,6 +194,8 @@ namespace WHyProject.ViewModel
             }
             set
             {
+                if (rs485ListData3 == value)
+                    return;
                 rs485ListData3 = value;
             }
         }
@@ -152,6 +208,8 @@ namespace WHyProject.ViewModel
             }
             set
             {
+                if (rs485Light2 == value)
+                    return;
                 rs485Light2 = value;
             }
         }
@@ -164,6 +222,8 @@ namespace WHyProject.ViewModel
             }
             set
             {
+                if (rs485Light3 == value)
+                    return;
                 rs485Light3 = value;
             }
         }
@@ -176,6 +236,8 @@ namespace WHyProject.ViewModel
             }
             set
             {
+                if (rs485Light4 == value)
+                    return;
                 rs485Light4 = value;
             }
         }
@@ -188,6 +250,8 @@ namespace WHyProject.ViewModel
             }
             set
             {
+                if (rs485Light5 == value)
+                    return;
                 rs485Light5 = value;
             }
         }
@@ -200,137 +264,125 @@ namespace WHyProject.ViewModel
             }
             set
             {
+                if (rs485Light6 == value)
+                    return;
                 rs485Light6 = value;
             }
         }
 
-        private DispatcherTimer timer = null;
-        private Random rand;
+        private void InitRS485List(
+            ObservableCollection<RS485DebugFPCData> ListData,
+            string[] TextBlock,
+            string[] TextBox)
+        {
+          //  ListData = new ObservableCollection<RS485DebugFPCData>();
+            for(int i = 0; i < TextBlock.Length;i ++)
+            {
+                ListData.Add(new RS485DebugFPCData() { Info = TextBlock[i], Data = 0, Unit = TextBox[i]});
+             }
+        }
+
+        private void InitDebugData()
+        {
+            RS485ListData1 = new ObservableCollection<RS485DebugFPCData>();
+            InitRS485List(RS485ListData1, TextBlockInfo1, TextBlockUnit1);
+
+            RS485ListData2 = new ObservableCollection<RS485DebugFPCData>();
+            InitRS485List(RS485ListData2, TextBlockInfo2, TextBlockUnit2);
+
+            RS485ListData3 = new ObservableCollection<RS485DebugFPCData>();
+            InitRS485List(RS485ListData3, TextBlockInfo3, TextBlockUnit3);
+        }
+
+        private void InitLight(ObservableCollection<RS485DebugFPCData> ListData,string[] Info)
+        {
+            for(int i = 0; i < Info.Length; i ++)
+            {
+               ListData.Add(new RS485DebugFPCData() { Info = Info[i], Light = true });
+            }
+        }
+
+        private void InitDebugLight()
+        {
+            RS485Light1 = new ObservableCollection<RS485DebugFPCData>();
+            InitLight(RS485Light1, LightInfo1);
+
+            RS485Light2 = new ObservableCollection<RS485DebugFPCData>();
+            InitLight(RS485Light2, LightInfo2);
+
+            RS485Light3 = new ObservableCollection<RS485DebugFPCData>();
+            InitLight(RS485Light3, LightInfo3);
+
+            RS485Light4 = new ObservableCollection<RS485DebugFPCData>();
+            InitLight(RS485Light4, LightInfo4);
+
+            RS485Light5 = new ObservableCollection<RS485DebugFPCData>();
+            InitLight(RS485Light5, LightInfo5);
+
+            RS485Light6 = new ObservableCollection<RS485DebugFPCData>();
+            InitLight(RS485Light6, LightInfo6);
+        }
         /// <summary>
         /// Initializes a new instance of the RS485FPCDebugViewModel class.
         /// </summary>
         public RS485FPCDebugViewModel()
         {
-            string[] TextBlockInfo = { "控制柜温度", "TBD", "TBD", "开关柜温度",
-                                        "冷却水温度","冷却水压力","TBD","TBD",
-                                        "电网电压RS","电网电压ST","电网电压TR","电网频率",
-                                        "电网电流R","电网电流S","电网电流T","电网有功",
-                                        "电感电流R","电感电流S","电感电流T","电网无功",
-                                        "母线电压","模块温度R","模块温度S","模块温度T",
-                                        "制动恢复时间",
-                                        "定子电压UV","定子电压VW","定子电压WU","电机频率",
-                                        "定子电流U","定子电流V","定子电流W","电机有功",
-                                        "励磁电流","故障编号","机侧功率因数","电磁转矩",
-                                        "母线电压","模块温度U","模块温度V","模块温度W"
-                                     };
 
-            string[] TextBlockUnit =
-            {
-                "C"," "," ","C",
-                "C","bar"," "," ",
-                "V","V","V","Hz",
-                "A","A","A","KW",
-                "A","A","A","KVar",
-                "V","C","C","C",
-                "min",
-                "V","V","V","Hz",
-                "A","A","A","KW",
-                "A"," "," ","%",
-                "V","C","C","C"
+            InitDebugData();
+            InitDebugLight();
 
-            };
+            Messenger.Default.Register<string>(this,
+            (message) => {
+             ChangeModelData(message);
+                    //do what you want 
+                });
 
-            
-           
-            RS485ListData1 = new ObservableCollection<RS485DebugFPCData>();
-            for(int i = 0; i < 8; i ++)
-            {
-                RS485ListData1.Add(new RS485DebugFPCData() { Info = TextBlockInfo[i], Data = 0, Unit = TextBlockUnit[i]});
-            }
-
-            RS485ListData2 = new ObservableCollection<RS485DebugFPCData>();
-            for(int i = 8; i < 25; i ++)
-            {
-                RS485ListData2.Add(new RS485DebugFPCData() { Info = TextBlockInfo[i], Data = 0, Unit = TextBlockUnit[i] });
-            }
-
-            RS485ListData3 = new ObservableCollection<RS485DebugFPCData>();
-            for(int i = 25; i < 41; i ++)
-            {
-                RS485ListData3.Add(new RS485DebugFPCData() { Info = TextBlockInfo[i], Data = 0, Unit = TextBlockUnit[i] });
-            }
-
-            RS485Light1 = new ObservableCollection<RS485DebugFPCData>();
-            for(int i = 0; i < LightInfo1.Length; i ++)
-            {
-                RS485Light1.Add(new RS485DebugFPCData() { Info = LightInfo1[i],Light = true });
-            }
-
-            RS485Light2 = new ObservableCollection<RS485DebugFPCData>();
-            for(int i = 0; i < LightInfo2.Length;i ++)
-            {
-                RS485Light2.Add(new RS485DebugFPCData() { Info = LightInfo2[i], Light = true });
-            }
-
-            RS485Light3 = new ObservableCollection<RS485DebugFPCData>();
-            for (int i = 0; i < LightInfo3.Length; i++)
-            {
-                RS485Light3.Add(new RS485DebugFPCData() { Info = LightInfo3[i], Light = true });
-            }
-
-            RS485Light4 = new ObservableCollection<RS485DebugFPCData>();
-            for (int i = 0; i < LightInfo4.Length; i++)
-            {
-                RS485Light4.Add(new RS485DebugFPCData() { Info = LightInfo4[i], Light = true });
-            }
-
-            RS485Light5 = new ObservableCollection<RS485DebugFPCData>();
-            for (int i = 0; i < LightInfo5.Length; i++)
-            {
-                RS485Light5.Add(new RS485DebugFPCData() { Info = LightInfo5[i], Light = true });
-            }
-
-            RS485Light6 = new ObservableCollection<RS485DebugFPCData>();
-            for (int i = 0; i < LightInfo6.Length; i++)
-            {
-                RS485Light6.Add(new RS485DebugFPCData() { Info = LightInfo6[i], Light = true });
-            }
-
-            timer = new DispatcherTimer();
-            timer.Tick += new EventHandler(OnTimerHandler);
-            timer.Interval = TimeSpan.FromMilliseconds(500);
-            timer.Start();
-
-            rand = new Random();
         }
 
-
-        private void OnTimerHandler(Object Sender, EventArgs e)
+        private void ChangeListData(string propertyName, ObservableCollection<RS485DebugFPCData> RS485ListData)
         {
-            for (int i = 0; i < 8; i++)
+            Type type = objMasterConductor.GetType();
+            System.Reflection.PropertyInfo propertyInfo = type.GetProperty(propertyName);
+            double[] temp = (double[])propertyInfo.GetValue(objMasterConductor);
+            for (int i = 0; i < RS485ListData.Count; i ++)
             {
-                RS485ListData1[i].Data = rand.Next(100, 2000);
-            }
 
-            for(int i = 0; i < 17; i ++)
-            {
-                RS485ListData2[i].Data = rand.Next(100, 2000);
-            }
-
-            for(int i = 0;i < 16; i ++)
-            {
-                RS485ListData3[i].Data = rand.Next(100, 2000);
-            }
-
-            for(int i = 0; i < LightInfo1.Length; i ++ )
-            {
-                int temp = rand.Next(0, 100);
-                if (temp <= 50)
-                    RS485Light1[i].Light = true;
-                else
-                    RS485Light1[i].Light = false;    
-
+                RS485ListData[i].Data = temp[i];
             }
         }
+
+        private void ChangeLight(string propertyName, ObservableCollection<RS485DebugFPCData> RS485Light)
+        {
+            ushort temp = 1;
+            Type type = objMasterConductor.GetType();
+            System.Reflection.PropertyInfo propertyInfo = type.GetProperty(propertyName);
+            ushort value = (ushort)propertyInfo.GetValue(objMasterConductor);
+            for (int i = 0; i < RS485Light.Count; i++)
+            {
+                if ((value & temp) == temp)
+                {
+                    RS485Light[i].Light = true;
+                }
+                else
+                    RS485Light[i].Light = false;
+                temp <<= 1;
+            }
+
+        }
+
+        void ChangeModelData(string propertyName)
+        {
+            ChangeListData("Control1", RS485ListData1);
+            ChangeListData("Control2", RS485ListData2);
+            ChangeListData("Control3", RS485ListData3);
+            ChangeLight("GenModuleStatusForDisplay", RS485Light1);
+            ChangeLight("GenModuleModeForDisplay", RS485Light2);
+            ChangeLight("GridModuleModeForDisplay", RS485Light3);
+            ChangeLight("GridModuleStatusForDisplay", RS485Light4);
+            ChangeLight("McuModuleModeForDisplay", RS485Light5);
+            ChangeLight("McuModuleStatusForDisplay", RS485Light6);
+        }
+
+       
     }
 }

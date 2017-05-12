@@ -82,13 +82,9 @@
     <Compile Include="Model\Modules\GenModule.cs" />
     <Compile Include="Model\Modules\GridModule.cs" />
     <Compile Include="Model\Modules\MCUModule.cs" />
-    <Compile Include="ViewModel\ListBoxTextViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\RS485FPCDebugViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
-    <Compile Include="View\ListBoxView.xaml.cs">
-      <DependentUpon>ListBoxView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\RS485Debug.xaml.cs">
       <DependentUpon>RS485Debug.xaml</DependentUpon>
     </Compile>
@@ -104,10 +100,6 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="View\ListBoxView.xaml">
-      <SubType>Form</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="View\RS485Debug.xaml">
       <SubType>Form</SubType>
       <Generator>MSBuild:Compile</Generator>

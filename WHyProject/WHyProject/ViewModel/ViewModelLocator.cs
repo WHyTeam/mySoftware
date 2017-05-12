@@ -44,7 +44,7 @@ namespace WHyProject.ViewModel
             ////}
 
             SimpleIoc.Default.Register<MainViewModel>();
-            SimpleIoc.Default.Register<ListBoxTextViewModel>();
+    
             SimpleIoc.Default.Register<RS485FPCDebugViewModel>();
         }
 
@@ -57,13 +57,6 @@ namespace WHyProject.ViewModel
         }
         
 
-        public ListBoxTextViewModel listView
-        {
-            get
-            {
-                return ServiceLocator.Current.GetInstance<ListBoxTextViewModel>();
-            }
-        }
 
         public RS485FPCDebugViewModel rs485debug
         {

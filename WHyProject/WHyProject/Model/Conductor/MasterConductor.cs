@@ -17,11 +17,21 @@ namespace WHyProject.Model.Conductor
         /// <summary>
         /// Initializes a new instance of the MasterConductor class.
         /// </summary>
-        public MasterConductor()
+        private MasterConductor()
         {
             Control1 = new double[8];
             Control2 = new double[17];
             Control3 = new double[16];
+            GenModule = new Modules.GenModule();
+            GridModule = new Modules.GridModule();
+            McuModule = new Modules.McuModule();
+        }
+
+        private static MasterConductor _master = new MasterConductor();
+
+        public static MasterConductor Master
+        {
+            get { return _master; }
         }
     }
 }

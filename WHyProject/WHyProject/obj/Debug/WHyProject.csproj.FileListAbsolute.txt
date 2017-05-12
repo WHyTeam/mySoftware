@@ -30,5 +30,3 @@ E:\1研究生毕业设计\6项目代码\WHyProject\WHyProject\bin\Debug\WHyProje
 D:\huyue\C\C#_pipi\Why\WHyProject\WHyProject\obj\Debug\WHyProject.csprojResolveAssemblyReference.cache
 D:\huyue\C\C#_pipi\Why\WHyProject\WHyProject\obj\Debug\View\RS485Debug.baml
 D:\huyue\C\C#_pipi\Why\WHyProject\WHyProject\obj\Debug\View\RS485Debug.g.cs
-D:\huyue\C\C#_pipi\Why\WHyProject\WHyProject\obj\Debug\View\ListBoxView.baml
-D:\huyue\C\C#_pipi\Why\WHyProject\WHyProject\obj\Debug\View\ListBoxView.g.cs
