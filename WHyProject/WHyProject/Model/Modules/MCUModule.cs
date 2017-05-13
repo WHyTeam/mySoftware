@@ -19,6 +19,7 @@ namespace WHyProject.Model.Modules
         /// </summary>
         public McuModule()
         {
+            FaultForDisplay = new ushort[4];
         }
     }
 }

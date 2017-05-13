@@ -45,7 +45,7 @@ namespace WHyProject.ViewModel
 
             SimpleIoc.Default.Register<MainViewModel>();
     
-            SimpleIoc.Default.Register<RS485FPCDebugViewModel>();
+            SimpleIoc.Default.Register<DebugViewModel>();
         }
 
         public MainViewModel Main
@@ -58,11 +58,11 @@ namespace WHyProject.ViewModel
         
 
 
-        public RS485FPCDebugViewModel rs485debug
+        public DebugViewModel rs485debug
         {
             get
             {
-                return ServiceLocator.Current.GetInstance<RS485FPCDebugViewModel>();
+                return ServiceLocator.Current.GetInstance<DebugViewModel>();
             }
         }
         public static void Cleanup()

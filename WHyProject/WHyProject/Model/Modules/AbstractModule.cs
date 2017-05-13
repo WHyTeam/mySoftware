@@ -13,19 +13,44 @@ namespace WHyProject.Model.Modules
    /// </summary>
     public abstract class AbstractModule 
     {
+        private ushort _modeForDisplay;
+        private ushort _statusForDisplay;
+        private ushort[] _faultForDisplay;
+        private ushort _modeForSet;
+        private ushort _modeReadForSet;
 
         /// <summary>
         /// Initializes a new instance of the AbstractModule class.
         /// </summary>
-        public ushort ModeForDisplay { get; set; }
+        public ushort ModeForDisplay
+        {
+            get { return _modeForDisplay; }
+            set { _modeForDisplay = value; }
+        }
 
-        public ushort StatusForDisplay { get; set; }
+        public ushort StatusForDisplay
+        {
+            get { return _statusForDisplay; }
+            set { _statusForDisplay = value; }
+        }
 
 
-        public ushort[] FaultForDisplay { get; set; }
+        public ushort[] FaultForDisplay
+        {
+            get { return _faultForDisplay; }
+            set { _faultForDisplay = value; }
+        }
 
-        public ushort ModeForSet { get; set; }
+        public ushort ModeForSet
+        {
+            get { return _modeForSet; }
+            set { _modeForSet = value; }
+        }
 
-        public ushort ModeReadForSet { get; set; }
+        public ushort ModeReadForSet
+        {
+            get { return _modeReadForSet; }
+            set { _modeReadForSet = value; }
+        }
     }
 }

@@ -37,7 +37,7 @@ namespace WHyProject.View {
     /// <summary>
     /// RS485Debug
     /// </summary>
-    public partial class RS485Debug : System.Windows.Window, System.Windows.Markup.IComponentConnector {
+    public partial class DebugWindow : System.Windows.Window, System.Windows.Markup.IComponentConnector {
         
         
         #line 70 "..\..\..\View\RS485Debug.xaml"

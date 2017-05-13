@@ -3,14 +3,14 @@
 namespace WHyProject.View
 {
     /// <summary>
-    /// Description for RS485Debug.
+    /// Description for DebugWindow.
     /// </summary>
-    public partial class RS485Debug : Window
+    public partial class DebugWindow : Window
     {
         /// <summary>
-        /// Initializes a new instance of the RS485Debug class.
+        /// Initializes a new instance of the DebugWindow class.
         /// </summary>
-        public RS485Debug()
+        public DebugWindow()
         {
             InitializeComponent();
         }

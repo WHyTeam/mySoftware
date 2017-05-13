@@ -19,6 +19,7 @@ namespace WHyProject.Model.Modules
         /// </summary>
         public GenModule()
         {
+            FaultForDisplay = new ushort[4];
         }
     }
 }
