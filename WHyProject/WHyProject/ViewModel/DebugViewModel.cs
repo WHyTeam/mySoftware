@@ -2,76 +2,13 @@
 using WHyProject.Model.Conductor;
 using System.Collections.ObjectModel;
 using System;
+using System.Collections.Generic;
 using System.Windows.Threading;
 using GalaSoft.MvvmLight.Messaging;
+using WHyProject.ModelForShow;
 
 namespace WHyProject.ViewModel
 {
-   
-    ///<summary>
-    /// This class is created to show data in listbox
-    /// </summary>
-    public class DebugFPCData : ViewModelBase
-    {
-        private MasterConductor objMasterConductor = MasterConductor.Master;
-
-        private double _data;
-        private string _img;
-        private bool _light;
-        public string Info { get; set; }
-       
-        public DebugFPCData()
-        {
-  
-        }
-
-
-
-        public bool Light
-        {
-            get { return _light; }
-            set
-            {
-                _light = value;
-                Img = null;
-            }
-
-        }
-        public double Data
-        {
-            get
-            {
-                return _data;
-            }
-            set
-            {
-                _data = value;
-                RaisePropertyChanged(() => Data);
-            }
-        }
-
-        public string Img
-        {
-            get
-            {
-
-                return _img;
-
-            }
-            set
-            {
-                if (Light == true)
-                    _img = AppDomain.CurrentDomain.BaseDirectory + "Images\\red.jpg";
-                else
-                    _img = AppDomain.CurrentDomain.BaseDirectory + "Images\\green.jpg";
-                RaisePropertyChanged(() => Img);
-
-            }
-
-        } 
-        public string Unit { get; set; }
-    }
-
     /// <summary>
     /// This class contains properties that a View can data bind to.
     /// <para>
@@ -81,15 +18,15 @@ namespace WHyProject.ViewModel
     public class DebugViewModel : ViewModelBase
     {
         private MasterConductor objMasterConductor = MasterConductor.Master;
-        private ObservableCollection<DebugFPCData> rs485ListData1;
-        private ObservableCollection<DebugFPCData> rs485ListData2;
-        private ObservableCollection<DebugFPCData> rs485ListData3;
-        private ObservableCollection<DebugFPCData> rs485Light1;
-        private ObservableCollection<DebugFPCData> rs485Light2;
-        private ObservableCollection<DebugFPCData> rs485Light3;
-        private ObservableCollection<DebugFPCData> rs485Light4;
-        private ObservableCollection<DebugFPCData> rs485Light5;
-        private ObservableCollection<DebugFPCData> rs485Light6;
+        private ObservableCollection<MasterModel> rs485ListData1;
+        private ObservableCollection<MasterModel> rs485ListData2;
+        private ObservableCollection<MasterModel> rs485ListData3;
+        private ObservableCollection<MasterModel> rs485Light1;
+        private ObservableCollection<MasterModel> rs485Light2;
+        private ObservableCollection<MasterModel> rs485Light3;
+        private ObservableCollection<MasterModel> rs485Light4;
+        private ObservableCollection<MasterModel> rs485Light5;
+        private ObservableCollection<MasterModel> rs485Light6;
 
         string[] TextBlockInfo1 = { "控制柜温度", "TBD", "TBD", "开关柜温度",
                                     "冷却水温度","冷却水压力","TBD","TBD"};
@@ -142,7 +79,7 @@ namespace WHyProject.ViewModel
             //timer.Stop();
         }
 
-        public ObservableCollection<DebugFPCData> RS485ListData1
+        public ObservableCollection<MasterModel> RS485ListData1
         {
             get
             {
@@ -156,7 +93,7 @@ namespace WHyProject.ViewModel
             }
         }
 
-        public ObservableCollection<DebugFPCData> RS485ListData2
+        public ObservableCollection<MasterModel> RS485ListData2
         {
             get
             {
@@ -170,7 +107,7 @@ namespace WHyProject.ViewModel
             }
         }
 
-        public ObservableCollection<DebugFPCData> RS485Light1
+        public ObservableCollection<MasterModel> RS485Light1
         {
             get
             {
@@ -184,7 +121,7 @@ namespace WHyProject.ViewModel
             }
         }
 
-        public ObservableCollection<DebugFPCData> RS485ListData3
+        public ObservableCollection<MasterModel> RS485ListData3
         {
             get
             {
@@ -198,7 +135,7 @@ namespace WHyProject.ViewModel
             }
         }
 
-        public ObservableCollection<DebugFPCData> RS485Light2
+        public ObservableCollection<MasterModel> RS485Light2
         {
             get
             {
@@ -212,7 +149,7 @@ namespace WHyProject.ViewModel
             }
         }
 
-        public ObservableCollection<DebugFPCData> RS485Light3
+        public ObservableCollection<MasterModel> RS485Light3
         {
             get
             {
@@ -226,7 +163,7 @@ namespace WHyProject.ViewModel
             }
         }
 
-        public ObservableCollection<DebugFPCData> RS485Light4
+        public ObservableCollection<MasterModel> RS485Light4
         {
             get
             {
@@ -240,7 +177,7 @@ namespace WHyProject.ViewModel
             }
         }
 
-        public ObservableCollection<DebugFPCData> RS485Light5
+        public ObservableCollection<MasterModel> RS485Light5
         {
             get
             {
@@ -254,7 +191,7 @@ namespace WHyProject.ViewModel
             }
         }
 
-        public ObservableCollection<DebugFPCData> RS485Light6
+        public ObservableCollection<MasterModel> RS485Light6
         {
             get
             {
@@ -269,57 +206,58 @@ namespace WHyProject.ViewModel
         }
 
         private void InitRS485List(
-            ObservableCollection<DebugFPCData> ListData,
+            ObservableCollection<MasterModel> ListData,
             string[] TextBlock,
             string[] TextBox)
         {
-            //ListData = new ObservableCollection<DebugFPCData>();
+            //ListData = new ObservableCollection<MasterModel>();
             for(int i = 0; i < TextBlock.Length;i ++)
             {
-                ListData.Add(new DebugFPCData() { Info = TextBlock[i], Data = 0, Unit = TextBox[i]});
+                ListData.Add(new MasterModel() { Info = TextBlock[i], Data = 0, Unit = TextBox[i]});
              }
         }
 
         private void InitDebugData()
         {
-            RS485ListData1 = new ObservableCollection<DebugFPCData>();
+            RS485ListData1 = new ObservableCollection<MasterModel>();
             InitRS485List(RS485ListData1, TextBlockInfo1, TextBlockUnit1);
 
-            RS485ListData2 = new ObservableCollection<DebugFPCData>();
+            RS485ListData2 = new ObservableCollection<MasterModel>();
             InitRS485List(RS485ListData2, TextBlockInfo2, TextBlockUnit2);
 
-            RS485ListData3 = new ObservableCollection<DebugFPCData>();
+            RS485ListData3 = new ObservableCollection<MasterModel>();
             InitRS485List(RS485ListData3, TextBlockInfo3, TextBlockUnit3);
         }
 
-        private void InitLight(ObservableCollection<DebugFPCData> ListData, string[] Info)
+        private void InitLight(ObservableCollection<MasterModel> ListData, string[] Info)
         {
             for(int i = 0; i < Info.Length; i ++)
             {
-               ListData.Add(new DebugFPCData() { Info = Info[i], Light = true });
+               ListData.Add(new MasterModel() { Info = Info[i], Light = true });
             }
         }
 
         private void InitDebugLight()
         {
-            RS485Light1 = new ObservableCollection<DebugFPCData>();
+            RS485Light1 = new ObservableCollection<MasterModel>();
             InitLight(RS485Light1, LightInfo1);
 
-            RS485Light2 = new ObservableCollection<DebugFPCData>();
+            RS485Light2 = new ObservableCollection<MasterModel>();
             InitLight(RS485Light2, LightInfo2);
 
-            RS485Light3 = new ObservableCollection<DebugFPCData>();
+            RS485Light3 = new ObservableCollection<MasterModel>();
             InitLight(RS485Light3, LightInfo3);
 
-            RS485Light4 = new ObservableCollection<DebugFPCData>();
+            RS485Light4 = new ObservableCollection<MasterModel>();
             InitLight(RS485Light4, LightInfo4);
 
-            RS485Light5 = new ObservableCollection<DebugFPCData>();
+            RS485Light5 = new ObservableCollection<MasterModel>();
             InitLight(RS485Light5, LightInfo5);
 
-            RS485Light6 = new ObservableCollection<DebugFPCData>();
+            RS485Light6 = new ObservableCollection<MasterModel>();
             InitLight(RS485Light6, LightInfo6);
         }
+
         /// <summary>
         /// Initializes a new instance of the DebugViewModel class.
         /// </summary>
@@ -328,57 +266,122 @@ namespace WHyProject.ViewModel
 
             InitDebugData();
             InitDebugLight();
+            MessageToPropertyForText = new Dictionary<string, string>
+            {
+                {"Control1", "RS485ListData1"},
+                {"Control2", "RS485ListData2"},
+                {"Control3", "RS485ListData3"}
+            };
 
-            Messenger.Default.Register<string>(this,
-            (message) => {
-                        ChangeModelData(message);
-                        //do what you want 
-                         });
+            MessageToPropertyForLight = new Dictionary<string, string>
+            {
+                {"GenModuleStatusForDisplay", "RS485Light1" },
+                {"GenModuleModeForDisplay", "RS485Light2" },
+                {"GridModuleModeForDisplay", "RS485Light3" },
+                {"GridModuleStatusForDisplay", "RS485Light4" },
+                {"McuModuleModeForDisplay", "RS485Light5" },
+                {"McuModuleStatusForDisplay", "RS485Light6" },
+            };
 
+        //Messenger.Default.Register<string>(this,
+            //(message) => {
+            //            ChangeModelData(message);
+            //            //do what you want 
+            //             });
+            Messenger.Default.Register<NotificationMessage>(this, message =>
+            {
+                if (message.Sender is MasterConductor)
+                {
+                    ChangeModelData(message.Notification);
+                }
+            });
         }
 
-        private void ChangeListData(string propertyName, ObservableCollection<DebugFPCData> RS485ListData)
+        //private void ChangeListData(string propertyName, ObservableCollection<MasterModel> RS485ListData)
+        //{
+        //    Type type = objMasterConductor.GetType();
+        //    System.Reflection.PropertyInfo propertyInfo = type.GetProperty(propertyName);
+        //    double[] temp = (double[])propertyInfo.GetValue(objMasterConductor);
+        //    for (int i = 0; i < RS485ListData.Count; i ++)
+        //    {
+
+        //        RS485ListData[i].Data = temp[i];
+        //    }
+        //}
+
+        private void ChangeListData(string propertyName)
         {
+            if (!MessageToPropertyForText.ContainsKey(propertyName))
+                return;
             Type type = objMasterConductor.GetType();
             System.Reflection.PropertyInfo propertyInfo = type.GetProperty(propertyName);
-            double[] temp = (double[])propertyInfo.GetValue(objMasterConductor);
-            for (int i = 0; i < RS485ListData.Count; i ++)
+            var temp = (double[])propertyInfo.GetValue(objMasterConductor);
+            propertyInfo = this.GetType().GetProperty(MessageToPropertyForText[propertyName]);
+            var listData = (ObservableCollection<MasterModel>)propertyInfo.GetValue(this);
+            for (int i = 0; i < listData.Count; i++)
             {
-
-                RS485ListData[i].Data = temp[i];
+                listData[i].Data = temp[i];
             }
         }
 
-        private void ChangeLight(string propertyName, ObservableCollection<DebugFPCData> RS485Light)
+
+        //private void ChangeLight(string propertyName, ObservableCollection<MasterModel> RS485Light)
+        //{
+        //    ushort temp = 1;
+        //    Type type = objMasterConductor.GetType();
+        //    System.Reflection.PropertyInfo propertyInfo = type.GetProperty(propertyName);
+        //    ushort value = (ushort)propertyInfo.GetValue(objMasterConductor);
+        //    for (int i = 0; i < RS485Light.Count; i++)
+        //    {
+        //        if ((value & temp) == temp)
+        //        {
+        //            RS485Light[i].Light = true;
+        //        }
+        //        else
+        //            RS485Light[i].Light = false;
+        //        temp <<= 1;
+        //    }
+        //}
+
+        private void ChangeLight(string propertyName)
         {
+            if(!MessageToPropertyForLight.ContainsKey(propertyName)) return;
             ushort temp = 1;
             Type type = objMasterConductor.GetType();
             System.Reflection.PropertyInfo propertyInfo = type.GetProperty(propertyName);
-            ushort value = (ushort)propertyInfo.GetValue(objMasterConductor);
-            for (int i = 0; i < RS485Light.Count; i++)
+            var value = (ushort)propertyInfo.GetValue(objMasterConductor);
+            propertyInfo = this.GetType().GetProperty(MessageToPropertyForLight[propertyName]);
+            var light = (ObservableCollection<MasterModel>)propertyInfo.GetValue(this);
+            for (int i = 0; i < light.Count; i++)
             {
                 if ((value & temp) == temp)
                 {
-                    RS485Light[i].Light = true;
+                    light[i].Light = true;
                 }
                 else
-                    RS485Light[i].Light = false;
+                    light[i].Light = false;
                 temp <<= 1;
             }
-
         }
+
+        private readonly Dictionary<string, string> MessageToPropertyForText;
+        private readonly Dictionary<string, string> MessageToPropertyForLight;
 
         void ChangeModelData(string propertyName)
         {
-            ChangeListData("Control1", RS485ListData1);
-            ChangeListData("Control2", RS485ListData2);
-            ChangeListData("Control3", RS485ListData3);
-            ChangeLight("GenModuleStatusForDisplay", RS485Light1);
-            ChangeLight("GenModuleModeForDisplay", RS485Light2);
-            ChangeLight("GridModuleModeForDisplay", RS485Light3);
-            ChangeLight("GridModuleStatusForDisplay", RS485Light4);
-            ChangeLight("McuModuleModeForDisplay", RS485Light5);
-            ChangeLight("McuModuleStatusForDisplay", RS485Light6);
+            //ChangeListData("Control1", RS485ListData1);
+            //ChangeListData("Control2", RS485ListData2);
+            // ChangeListData("Control3", RS485ListData3);
+            if(MessageToPropertyForText.ContainsKey(propertyName))
+                ChangeListData(propertyName);
+            if(MessageToPropertyForLight.ContainsKey(propertyName))
+                ChangeLight(propertyName);
+            //ChangeLight("GenModuleStatusForDisplay", RS485Light1);
+            //ChangeLight("GenModuleModeForDisplay", RS485Light2);
+            //ChangeLight("GridModuleModeForDisplay", RS485Light3);
+            //ChangeLight("GridModuleStatusForDisplay", RS485Light4);
+            //ChangeLight("McuModuleModeForDisplay", RS485Light5);
+            //ChangeLight("McuModuleStatusForDisplay", RS485Light6);
         }
 
        

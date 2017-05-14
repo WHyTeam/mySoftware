@@ -67,7 +67,7 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <ListBox Margin="10,10,20,0" x:Name="DebugData1" Style="{StaticResource ListBoxDataSytle}" ItemsSource="{Binding RS485ListData1}" />
+            <ListBox Margin="10,10,20,0" x:Name="DebugData1" Style="{StaticResource ListBoxDataSytle}" ItemsSource="{Binding RS485ListData1}"/>
             <ListBox Margin="10,10,20,0" Grid.Column="1" ItemsSource="{Binding RS485Light1}" Style="{StaticResource ListBoxLightSytle}"/>
             <ListBox Margin="10,10,20,0" Grid.Column="2" ItemsSource="{Binding RS485Light2}" Style="{StaticResource ListBoxLightSytle}"/>
         </Grid>

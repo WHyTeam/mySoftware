@@ -75,6 +75,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ModelForShow\MasterModel.cs" />
     <Compile Include="Model\Conductor\AbstractConductor.cs" />
     <Compile Include="Model\Conductor\MasterConductor.cs" />
     <Compile Include="Model\Conductor\SlaveConductor.cs" />
@@ -84,9 +85,13 @@
     <Compile Include="Model\Modules\MCUModule.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\DebugViewModel.cs" />
+    <Compile Include="ViewModel\SystemFaultViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="View\DebugWindow.xaml.cs">
       <DependentUpon>DebugWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SystemFaultView.xaml.cs">
+      <DependentUpon>SystemFaultView.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -102,6 +107,10 @@
     </Compile>
     <Page Include="View\DebugWindow.xaml">
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SystemFaultView.xaml">
+      <SubType>Form</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>

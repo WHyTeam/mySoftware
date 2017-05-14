@@ -32,7 +32,6 @@ namespace WHyProject.Model.Conductor
             timer.Tick += new EventHandler(OnTimerHandler);
             timer.Interval = TimeSpan.FromMilliseconds(500);
             timer.Start();
-
             rand = new Random();
         }
 
@@ -63,16 +62,17 @@ namespace WHyProject.Model.Conductor
             }
         }
 
+        #region GenModule
         public ushort GenModuleStatusForDisplay
         {
             get
-            {     
-                return GenModule.StatusForDisplay; 
+            {
+                return GenModule.StatusForDisplay;
             }
             set
             {
                 GenModule.StatusForDisplay = value;
-                Messenger.Default.Send("GenModuleStatusForDisplay");
+                Messenger.Default.Send<NotificationMessage>(new NotificationMessage(this, "GenModuleStatusForDisplay"));
             }
         }
 
@@ -85,9 +85,12 @@ namespace WHyProject.Model.Conductor
             set
             {
                 GenModule.ModeForDisplay = value;
-                Messenger.Default.Send("GenModuleModeForDisplay");
+                Messenger.Default.Send<NotificationMessage>(new NotificationMessage(this, "GenModuleModeForDisplay"));
             }
         }
+        #endregion
+
+        #region GridModule
 
         public ushort GridModuleStatusForDisplay
         {
@@ -98,7 +101,7 @@ namespace WHyProject.Model.Conductor
             set
             {
                 GridModule.StatusForDisplay = value;
-                Messenger.Default.Send("GridModuleStatusForDisplay");
+                Messenger.Default.Send<NotificationMessage>(new NotificationMessage(this, "GridModuleStatusForDisplay"));
             }
         }
 
@@ -111,9 +114,13 @@ namespace WHyProject.Model.Conductor
             set
             {
                 GridModule.ModeForDisplay = value;
-                Messenger.Default.Send("GridModuleModeForDisplay");
+                Messenger.Default.Send<NotificationMessage>(new NotificationMessage(this, "GridModuleModeForDisplay"));
             }
         }
+
+        #endregion
+
+        #region MCUModule
 
         public ushort McuModuleModeForDisplay
         {
@@ -124,7 +131,7 @@ namespace WHyProject.Model.Conductor
             set
             {
                 McuModule.ModeForDisplay = value;
-                Messenger.Default.Send("McuModuleModeForDisplay");
+                Messenger.Default.Send<NotificationMessage>(new NotificationMessage(this, "McuModuleModeForDisplay"));
             }
         }
 
@@ -137,34 +144,48 @@ namespace WHyProject.Model.Conductor
             set
             {
                 McuModule.StatusForDisplay = value;
-                Messenger.Default.Send("McuModuleStatusForDisplay");
+                Messenger.Default.Send<NotificationMessage>(new NotificationMessage(this, "McuModuleStatusForDisplay"));
             }
         }
-        protected GenModule GenModule { get; set; }
-        protected GridModule GridModule { get; set; }
-        protected McuModule McuModule { get; set; }
+
+        public ushort[] SystemFaultForDisplay
+        {
+            get { return McuModule.FaultForDisplay; }
+            set { McuModule.FaultForDisplay = value; }
+        }
+        #endregion
+
+        public GenModule GenModule { get; set; }
+        public GridModule GridModule { get; set; }
+        public McuModule McuModule { get; set; }
         public ushort TorqueRef { get; set; }//转矩
         public short PowerRef { get; set; }//
         public short PhiRed { get; set; }//
 
-        private void OnTimerHandler(Object Sender, EventArgs e)
+        private void OnTimerHandler(Object sender, EventArgs e)
         {
     
-            for (int i = 0; i < 8; i++)
+            for (var i = 0; i < 8; i++)
             {
                 Control1[i] = rand.Next(100, 2000);
             }
-            Messenger.Default.Send("Control1");
-            for (int i = 0; i < 17; i++)
+            Messenger.Default.Send<NotificationMessage>(new NotificationMessage(this,"Control1"));
+            for (var i = 0; i < 17; i++)
             {
                 Control2[i] = rand.Next(100, 2000);
             }
-            Messenger.Default.Send("Control2");
-            for (int i = 0; i < 16; i++)
+            Messenger.Default.Send<NotificationMessage>(new NotificationMessage(this,"Control2"));
+            for (var i = 0; i < 16; i++)
             {
                 Control3[i] = rand.Next(100, 2000);
             }
-            Messenger.Default.Send("Control3");
+            Messenger.Default.Send<NotificationMessage>(new NotificationMessage(this, "Control3"));
+
+            for (var i = 0; i < 4; i++)
+            {
+                SystemFaultForDisplay[i] = (ushort)rand.Next(0, 2000);
+            }
+            Messenger.Default.Send<NotificationMessage>(new NotificationMessage(this, "SystemFaultForDisplay"));
 
             GenModuleStatusForDisplay = (ushort)rand.Next(0, 2000);
             GenModuleModeForDisplay = (ushort)rand.Next(0, 2000);

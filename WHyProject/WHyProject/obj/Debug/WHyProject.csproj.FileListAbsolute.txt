@@ -63,3 +63,5 @@ E:\1研究生毕业设计\6项目代码\WHyProject\WHyProject\bin\Debug\Images\r
 E:\1研究生毕业设计\6项目代码\WHyProject\WHyProject\obj\Debug\WHyProject_Content.g.cs
 E:\1研究生毕业设计\6项目代码\WHyProject\WHyProject\obj\Debug\View\DebugWindow.baml
 E:\1研究生毕业设计\6项目代码\WHyProject\WHyProject\obj\Debug\View\DebugWindow.g.cs
+E:\1研究生毕业设计\6项目代码\WHyProject\WHyProject\obj\Debug\View\SystemFaultView.baml
+E:\1研究生毕业设计\6项目代码\WHyProject\WHyProject\obj\Debug\View\SystemFaultView.g.cs

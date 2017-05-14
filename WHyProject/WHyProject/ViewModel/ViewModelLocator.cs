@@ -44,8 +44,8 @@ namespace WHyProject.ViewModel
             ////}
 
             SimpleIoc.Default.Register<MainViewModel>();
-    
             SimpleIoc.Default.Register<DebugViewModel>();
+            SimpleIoc.Default.Register<SystemFaultViewModel>();
         }
 
         public MainViewModel Main
@@ -55,14 +55,20 @@ namespace WHyProject.ViewModel
                 return ServiceLocator.Current.GetInstance<MainViewModel>();
             }
         }
-        
-
 
         public DebugViewModel rs485debug
         {
             get
             {
                 return ServiceLocator.Current.GetInstance<DebugViewModel>();
+            }
+        }
+
+        public SystemFaultViewModel SystemFault
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<SystemFaultViewModel>();
             }
         }
         public static void Cleanup()
