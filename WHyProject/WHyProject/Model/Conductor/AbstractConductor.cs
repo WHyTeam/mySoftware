@@ -63,6 +63,14 @@ namespace WHyProject.Model.Conductor
         }
 
         #region GenModule
+        public ushort[] GenFaultForDisplay
+        {
+            get { return GenModule.FaultForDisplay; }
+            set
+            {
+                GenModule.FaultForDisplay = value;
+            }
+        }
         public ushort GenModuleStatusForDisplay
         {
             get
@@ -91,7 +99,14 @@ namespace WHyProject.Model.Conductor
         #endregion
 
         #region GridModule
-
+        public ushort[] GridFaultForDisplay
+        {
+            get { return GridModule.FaultForDisplay; }
+            set
+            {
+                GridModule.FaultForDisplay = value;
+            }
+        }
         public ushort GridModuleStatusForDisplay
         {
             get
@@ -187,6 +202,17 @@ namespace WHyProject.Model.Conductor
             }
             Messenger.Default.Send<NotificationMessage>(new NotificationMessage(this, "SystemFaultForDisplay"));
 
+            for (int i = 0; i < 4; i++)
+            {
+                GridFaultForDisplay[i] = (ushort)rand.Next(100, 2000);
+            }
+            Messenger.Default.Send<NotificationMessage>(new NotificationMessage(this, "GridFaultForDisplay"));
+
+            for (int i = 0; i < 4; i++)
+            {
+                GenFaultForDisplay[i] = (ushort)rand.Next(100, 2000);
+            }
+            Messenger.Default.Send<NotificationMessage>(new NotificationMessage(this, "GenFaultForDisplay"));
             GenModuleStatusForDisplay = (ushort)rand.Next(0, 2000);
             GenModuleModeForDisplay = (ushort)rand.Next(0, 2000);
 

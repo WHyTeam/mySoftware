@@ -46,6 +46,8 @@ namespace WHyProject.ViewModel
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<DebugViewModel>();
             SimpleIoc.Default.Register<SystemFaultViewModel>();
+            SimpleIoc.Default.Register<GridFaultViewModel>();
+            SimpleIoc.Default.Register<GenFaultViewModel>();
         }
 
         public MainViewModel Main
@@ -69,6 +71,22 @@ namespace WHyProject.ViewModel
             get
             {
                 return ServiceLocator.Current.GetInstance<SystemFaultViewModel>();
+            }
+        }
+
+        public GridFaultViewModel gridFault
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<GridFaultViewModel>();
+            }
+        }
+
+        public GenFaultViewModel genFault
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<GenFaultViewModel>();
             }
         }
         public static void Cleanup()

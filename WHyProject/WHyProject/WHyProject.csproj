@@ -83,12 +83,20 @@
     <Compile Include="Model\Modules\GenModule.cs" />
     <Compile Include="Model\Modules\GridModule.cs" />
     <Compile Include="Model\Modules\MCUModule.cs" />
+    <Compile Include="ViewModel\GenFaultViewModel.cs" />
+    <Compile Include="ViewModel\GridFaultViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\DebugViewModel.cs" />
     <Compile Include="ViewModel\SystemFaultViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="View\DebugWindow.xaml.cs">
       <DependentUpon>DebugWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\GenFaultView.xaml.cs">
+      <DependentUpon>GenFaultView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\GridFaultView.xaml.cs">
+      <DependentUpon>GridFaultView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\SystemFaultView.xaml.cs">
       <DependentUpon>SystemFaultView.xaml</DependentUpon>
@@ -107,6 +115,14 @@
     </Compile>
     <Page Include="View\DebugWindow.xaml">
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\GenFaultView.xaml">
+      <SubType>Form</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\GridFaultView.xaml">
+      <SubType>Form</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\SystemFaultView.xaml">
