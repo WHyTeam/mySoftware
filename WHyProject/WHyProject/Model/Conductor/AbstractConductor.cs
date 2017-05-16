@@ -96,6 +96,18 @@ namespace WHyProject.Model.Conductor
                 Messenger.Default.Send<NotificationMessage>(new NotificationMessage(this, "GenModuleModeForDisplay"));
             }
         }
+
+        public ushort GenModuleModeForSet
+        {
+            get
+            {
+                return GenModule.ModeForSet;
+            }
+            set
+            {
+                GenModule.ModeForSet = value;
+            }
+        }
         #endregion
 
         #region GridModule
@@ -133,6 +145,14 @@ namespace WHyProject.Model.Conductor
             }
         }
 
+        public ushort GridModuleModeForSet
+        {
+            get { return GridModule.ModeForSet;}
+            set
+            {
+                GridModule.ModeForSet = value;
+            }
+        }
         #endregion
 
         #region MCUModule
@@ -167,6 +187,15 @@ namespace WHyProject.Model.Conductor
         {
             get { return McuModule.FaultForDisplay; }
             set { McuModule.FaultForDisplay = value; }
+        }
+
+        public ushort McuModuleModeForSet
+        {
+            get { return McuModule.ModeForSet; }
+            set
+            {
+                McuModule.ModeForSet = value;
+            }
         }
         #endregion
 

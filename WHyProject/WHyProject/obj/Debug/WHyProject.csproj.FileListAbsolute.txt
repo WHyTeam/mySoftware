@@ -105,3 +105,5 @@ D:\huyue\C\C#_pipi\Why3\WHyProject\WHyProject\obj\Debug\MainWindow.baml
 D:\huyue\C\C#_pipi\Why3\WHyProject\WHyProject\obj\Debug\WHyProject.g.resources
 D:\huyue\C\C#_pipi\Why3\WHyProject\WHyProject\obj\Debug\WHyProject.Properties.Resources.resources
 D:\huyue\C\C#_pipi\Why3\WHyProject\WHyProject\obj\Debug\WHyProject.csproj.GenerateResource.Cache
+D:\huyue\C\C#_pipi\Why3\WHyProject\WHyProject\obj\Debug\View\SystemSettingView.baml
+D:\huyue\C\C#_pipi\Why3\WHyProject\WHyProject\obj\Debug\View\SystemSettingView.g.cs

@@ -1,0 +1,88 @@
+﻿<Window x:Class="WHyProject.View.SystemSettingView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:ignore="http://www.galasoft.ch/ignore"
+        mc:Ignorable="d ignore"
+        DataContext="{Binding systemSetting, Source={StaticResource Locator}}">
+
+    <Grid>
+        <Grid.Resources>
+            <!--*******************************************-->
+            <Style TargetType="{x:Type ListBox}" x:Key="CheckBoxSytle" >
+                <Setter Property="ItemTemplate">
+                    <Setter.Value>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <CheckBox Margin="20,0" MinWidth="120" Content="{Binding Info}" IsChecked="{Binding IsCheck,Mode=TwoWay}" />
+                                <Image Margin="20,0" Source="{Binding Img}" Width="20" Height="20"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </Setter.Value>
+                </Setter>
+
+                <Setter Property="ItemsPanel">
+                    <Setter.Value>
+                        <ItemsPanelTemplate>
+                            <UniformGrid Columns="1"/>
+                        </ItemsPanelTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </Grid.Resources>
+
+
+        <!--*******************************************-->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="8*"/>
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                <TextBlock Margin="10,10,20,5" Text="{Binding SystemTextBlock[0]}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <StackPanel Orientation="Horizontal">
+                    <Button Command="{Binding SetCommand}" CommandParameter="MCUSystemSetting" Margin="10,0,0,5" MinWidth="80" MinHeight="20" HorizontalAlignment="Center" VerticalAlignment="Center" Content="{Binding ButtonSet[0]}"/>
+                    <Button Command="{Binding ReadCommand}" CommandParameter="MCUSystemSetting"  Margin="10,0,0,5" Content="{Binding ButtonSet[1]}" MinWidth="80" MinHeight="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </StackPanel>
+            </StackPanel>
+            <ListBox Margin="10,10,20,0" Grid.Row="1" Style="{StaticResource CheckBoxSytle}" ItemsSource="{Binding MCUSystemSetting}"/>
+        </Grid>
+
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="8*"/>
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                <TextBlock Margin="10,10,20,5" Text="{Binding SystemTextBlock[1]}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <StackPanel Orientation="Horizontal">
+                    <Button Command="{Binding SetCommand}" CommandParameter="GridSystemSetting" Margin="10,0,0,5" Content="{Binding ButtonSet[0]}" MinWidth="80" MinHeight="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <Button Command="{Binding ReadCommand}" CommandParameter="GridSystemSetting" Margin="10,0,0,5" Content="{Binding ButtonSet[1]}" MinWidth="80" MinHeight="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </StackPanel>
+            </StackPanel>
+            <ListBox Margin="10,10,20,0" Grid.Row="1" Style="{StaticResource CheckBoxSytle}" ItemsSource="{Binding GridSystemSetting}"/>
+        </Grid>
+
+        <Grid Grid.Column="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="8*"/>
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Vertical">
+                <TextBlock  Margin="10,10,20,5" Text="{Binding SystemTextBlock[2]}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Button Margin="10,0,0,5" Command="{Binding SetCommand}" CommandParameter="GenSystemSetting" Content="{Binding ButtonSet[0]}" MinWidth="80" MinHeight="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <Button Margin="10,0,0,5" Command="{Binding ReadCommand}" CommandParameter="GenSystemSetting" Content="{Binding ButtonSet[1]}" MinWidth="80" MinHeight="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </StackPanel>
+            </StackPanel>
+            <ListBox Margin="10,10,20,0" Grid.Row="1" Style="{StaticResource CheckBoxSytle}" ItemsSource="{Binding GenSystemSetting}"/>
+        </Grid>
+    </Grid>
+</Window>
