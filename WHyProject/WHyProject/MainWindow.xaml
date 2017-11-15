@@ -5,6 +5,25 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WHyProject"
         mc:Ignorable="d"
-        Title="MainWindow" >
-    <Grid/>
+        Title="MainWindow" 
+        DataContext="{Binding MainVM, Source={StaticResource Locator}}">
+    
+    <Grid>
+        <DockPanel>
+            <DockPanel DockPanel.Dock="Top">
+                <Menu>
+                    <MenuItem Header="文件(_F)"></MenuItem>
+                    <MenuItem Header="主机(_M)">
+                        <MenuItem Header="调试页面" Command="{Binding OpenWindowCommand}" CommandParameter="WHyProject.View.DebugWindow"></MenuItem>
+                        <MenuItem Header="系统错误" Command="{Binding OpenWindowCommand}" CommandParameter="WHyProject.View.SystemFaultView"></MenuItem>
+                        <MenuItem Header="机侧错误" Command="{Binding OpenWindowCommand}" CommandParameter="WHyProject.View.GenFaultView"></MenuItem>
+                        <MenuItem Header="网侧错误" Command="{Binding OpenWindowCommand}" CommandParameter="WHyProject.View.GridFaultView"></MenuItem>
+                        <MenuItem Header="控制页面" Command="{Binding OpenWindowCommand}" CommandParameter="WHyProject.View.SystemSettingView"></MenuItem>
+                        
+                    </MenuItem>
+
+                </Menu>
+            </DockPanel>
+        </DockPanel>
+    </Grid>
 </Window>

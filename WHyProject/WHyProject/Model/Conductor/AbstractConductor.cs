@@ -21,18 +21,17 @@ namespace WHyProject.Model.Conductor
         private double[] _control2/* = new double[17]*/;
         private double[] _control3/* = new double[16]*/;
         
-        private DispatcherTimer timer = null;
-        private Random rand;
+
+
+        //HY::用于系统维护窗口显示的底层数据
+        string _recvMaintainStr;
         /// <summary>
         /// Initializes a new instance of the AbstractConductor class.
         /// </summary>
         public AbstractConductor()
         {
-            timer = new DispatcherTimer();
-            timer.Tick += new EventHandler(OnTimerHandler);
-            timer.Interval = TimeSpan.FromMilliseconds(500);
-            timer.Start();
-            rand = new Random();
+
+            
         }
 
         //参数
@@ -41,6 +40,7 @@ namespace WHyProject.Model.Conductor
             get { return _control1; }
             set { _control1 = value;
                 // Messenger.Default.Send("Control1");
+                Messenger.Default.Send<NotificationMessage>(new NotificationMessage(this, "Control1"));
             }
         }
 
@@ -49,7 +49,7 @@ namespace WHyProject.Model.Conductor
         {
             get { return _control2; }
             set { _control2 = value;
-
+                Messenger.Default.Send<NotificationMessage>(new NotificationMessage(this, "Control2"));
             }
         }
 
@@ -58,7 +58,7 @@ namespace WHyProject.Model.Conductor
             get { return _control3; }
             set {
                 _control3 = value;
-
+                Messenger.Default.Send<NotificationMessage>(new NotificationMessage(this, "Control3"));
             }
         }
 
@@ -199,58 +199,23 @@ namespace WHyProject.Model.Conductor
         }
         #endregion
 
+        public string RecvMaintainStr
+        {
+            get { return _recvMaintainStr; }
+            set
+            {
+                if (_recvMaintainStr == value) return;
+                _recvMaintainStr = value;
+                Messenger.Default.Send<NotificationMessage>(new NotificationMessage(this, "RecvMaintainStr"));
+            }
+        }
+
         public GenModule GenModule { get; set; }
         public GridModule GridModule { get; set; }
         public McuModule McuModule { get; set; }
         public ushort TorqueRef { get; set; }//转矩
         public short PowerRef { get; set; }//
         public short PhiRed { get; set; }//
-
-        private void OnTimerHandler(Object sender, EventArgs e)
-        {
-    
-            for (var i = 0; i < 8; i++)
-            {
-                Control1[i] = rand.Next(100, 2000);
-            }
-            Messenger.Default.Send<NotificationMessage>(new NotificationMessage(this,"Control1"));
-            for (var i = 0; i < 17; i++)
-            {
-                Control2[i] = rand.Next(100, 2000);
-            }
-            Messenger.Default.Send<NotificationMessage>(new NotificationMessage(this,"Control2"));
-            for (var i = 0; i < 16; i++)
-            {
-                Control3[i] = rand.Next(100, 2000);
-            }
-            Messenger.Default.Send<NotificationMessage>(new NotificationMessage(this, "Control3"));
-
-            for (var i = 0; i < 4; i++)
-            {
-                SystemFaultForDisplay[i] = (ushort)rand.Next(0, 2000);
-            }
-            Messenger.Default.Send<NotificationMessage>(new NotificationMessage(this, "SystemFaultForDisplay"));
-
-            for (int i = 0; i < 4; i++)
-            {
-                GridFaultForDisplay[i] = (ushort)rand.Next(100, 2000);
-            }
-            Messenger.Default.Send<NotificationMessage>(new NotificationMessage(this, "GridFaultForDisplay"));
-
-            for (int i = 0; i < 4; i++)
-            {
-                GenFaultForDisplay[i] = (ushort)rand.Next(100, 2000);
-            }
-            Messenger.Default.Send<NotificationMessage>(new NotificationMessage(this, "GenFaultForDisplay"));
-            GenModuleStatusForDisplay = (ushort)rand.Next(0, 2000);
-            GenModuleModeForDisplay = (ushort)rand.Next(0, 2000);
-
-            GridModuleModeForDisplay = (ushort)rand.Next(0, 2000);
-            GridModuleStatusForDisplay = (ushort)rand.Next(0, 2000);
-
-            McuModuleModeForDisplay = (ushort)rand.Next(0, 2000);
-            McuModuleStatusForDisplay = (ushort)rand.Next(0, 2000);
-        }
-
+       
     }
 }

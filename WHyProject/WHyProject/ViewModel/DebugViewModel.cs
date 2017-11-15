@@ -384,6 +384,6 @@ namespace WHyProject.ViewModel
             //ChangeLight("McuModuleStatusForDisplay", RS485Light6);
         }
 
-       
+        
     }
 }

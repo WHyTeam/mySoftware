@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<AircraftData>
+  <F-14>
+    <Name>Tomcat</Name>
+    <Description>a supersonic, twin-engine, two-seat, variable-sweep wing fighter aircraft</Description>
+    <Manufacturer>Grumman Aerospace Corporation</Manufacturer>
+    <Cost>38million</Cost>
+    <GeneralCharacteristics>
+      <Crew>2(Pilot and Radar Intercept Officer)</Crew>
+      <Length>62 ft 9 in (19.1 m)</Length>
+      <Wingspan_Spread>64 ft (19.55 m)</Wingspan_Spread>
+      <Wingspan_Swept>38 ft (11.58 m)</Wingspan_Swept>
+      <Airfoil> NACA 64A209.65 mod root, 64A208.91 mod tip</Airfoil>
+      <EmptyWeight> 43,735 lb (19,838 kg)</EmptyWeight>
+      <LoadedWeight>61,000 lb (27,700 kg)</LoadedWeight>
+      <MaxTakeoffWeight> 74,350 lb (33,720 kg)</MaxTakeoffWeight>
+      <Powerplant>2*General Electric F110-GE-400 afterburning turbofans</Powerplant>
+      <DryThrust>16,610 lbf (73.9 kN) each</DryThrust>
+      <ThrustWithAfterburner>30,200 lbf (134 kN) each</ThrustWithAfterburner>
+      <MaximumFuelCapacity> 16,200 lb internal; 20,000 lb with 2x 267 gallon external tanks</MaximumFuelCapacity>
+    </GeneralCharacteristics>
+    <Performance>
+      <MaximumSpeed> Mach 2.34 (1,544 mph, 2,485 km/h) at high altitude</MaximumSpeed>
+      <CombatRadius> 500 nmi (575 mi, 926 km)</CombatRadius>
+      <FerryRange> 1,600 nmi (1,840 mi, 2,960 km)</FerryRange>
+      <ServiceCeiling> 50,000=""+ ft (15,200 m)</ServiceCeiling>
+      <RateOfClimb> LT45,000 ft/min (229 m/s)</RateOfClimb>
+      <WingLoading> 96 lb/ft2[164] (468.7 kg/m^2)</WingLoading>
+      <ThrustWeightRatio> 0.88</ThrustWeightRatio>
+    </Performance> 
+  </F-14>
+</AircraftData>

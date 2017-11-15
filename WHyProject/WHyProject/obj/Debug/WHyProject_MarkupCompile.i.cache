@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\huyue\C\C#_pipi\Why3\WHyProject\WHyProject\obj\Debug\
+E:\1研究生毕业设计\6项目代码\Why3\WHyProject\WHyProject\obj\Debug\
 WHyProject
 none
 false
 DEBUG;TRACE
-D:\huyue\C\C#_pipi\Why3\WHyProject\WHyProject\App.xaml
-61666258072
+E:\1研究生毕业设计\6项目代码\Why3\WHyProject\WHyProject\App.xaml
+10171881544
 2-1187100054
-29416765393
-691747100185
-MainWindow.xaml;View\DebugWindow.xaml;View\GenFaultView.xaml;View\GridFaultView.xaml;View\SystemFaultView.xaml;View\SystemSettingView.xaml;
+53207862216
+78-2137937090
+MainWindow.xaml;View\DebugWindow.xaml;View\GenFaultView.xaml;View\GridFaultView.xaml;View\LoginView.xaml;View\MainView.xaml;View\ParamView.xaml;View\SystemFaultView.xaml;View\SystemMaintainView.xaml;View\SystemSettingView.xaml;
 
-False
+True
 
